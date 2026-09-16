@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123047">
+  <title>Mapa Mental | Compass Rose Systems</title>
+  <style>
+    :root { --ink:#102a3a; --blue:#123c59; --sky:#dff3fb; --paper:#f7fafc; --line:#a9c0cc; --accent:#d77a25; }
+    * { box-sizing:border-box; } body { margin:0; min-height:100vh; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    header { min-height:72px; padding:14px clamp(16px,3vw,42px); display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--blue); color:white; }
+    .brand { display:flex; align-items:center; gap:12px; min-width:0; } .rose { width:35px; height:35px; border:2px solid #fff; border-radius:50%; position:relative; flex:0 0 auto; } .rose:before,.rose:after { content:""; position:absolute; background:#fff; left:50%; top:4px; width:2px; height:23px; transform:translateX(-50%); } .rose:after{ transform:translateX(-50%) rotate(90deg); }
+    h1 { margin:0; font-size:17px; letter-spacing:.06em; text-transform:uppercase; } .tagline { margin:2px 0 0; font-size:12px; opacity:.78; } .status { font-size:12px; padding:8px 11px; border:1px solid #74a1b8; border-radius:999px; color:#e3f5ff; white-space:nowrap; }
+    main { display:grid; grid-template-columns:minmax(280px,360px) 1fr; min-height:calc(100vh - 72px); }
+    aside { padding:24px; background:#fff; border-right:1px solid #d9e2e8; z-index:2; } h2 { margin:0 0 8px; font-size:18px; } .help { font-size:13px; line-height:1.45; margin:0 0 14px; color:#4c6574; } textarea { width:100%; min-height:300px; resize:vertical; border:1px solid #bfd0da; border-radius:12px; padding:13px; color:var(--ink); background:#fcfeff; font:13px/1.48 ui-monospace,SFMono-Regular,Consolas,monospace; outline:none; } textarea:focus { border-color:#1779a8; box-shadow:0 0 0 3px #dff3fb; }
+    .controls { display:flex; flex-wrap:wrap; gap:9px; margin-top:12px; } button { border:0; border-radius:9px; padding:10px 13px; font-weight:700; font-size:13px; cursor:pointer; color:white; background:var(--blue); } button:hover { filter:brightness(1.08); } button.secondary { color:var(--blue); background:#e7f1f5; } button.warn { color:#6b3303; background:#f9e1cc; } .note { margin:17px 0 0; padding:12px; font-size:12px; line-height:1.45; border-left:4px solid var(--accent); background:#fff4e9; color:#70400f; }
+    .board { position:relative; overflow:hidden; min-width:0; background-color:#edf4f7; background-image:radial-gradient(#c9d8df 1px,transparent 1px); background-size:19px 19px; } .toolbar { position:absolute; z-index:3; top:18px; right:20px; display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; } .toolbar button { box-shadow:0 3px 12px #29465a2b; } .toolbar button.primary { background:var(--accent); }
+    #map { width:100%; height:100%; min-height:650px; display:block; touch-action:none; } .connector { stroke:var(--line); stroke-width:2.1; fill:none; } .node rect { stroke-width:1.5; filter:drop-shadow(0 3px 4px #0e36451c); } .node text { fill:#123047; font-size:14px; font-weight:700; text-anchor:middle; dominant-baseline:middle; pointer-events:none; } .node[data-depth="0"] text { fill:#fff; font-size:18px; } .node { cursor:grab; } .node:active { cursor:grabbing; } .node.selected rect { stroke:#102a3a; stroke-width:3; } .editor { position:absolute; display:none; z-index:4; min-width:210px; padding:11px; background:#fff; border:1px solid #c4d4dc; border-radius:12px; box-shadow:0 12px 30px #0d344138; } .editor input { width:100%; padding:9px; border:1px solid #a9c0cc; border-radius:7px; font:14px inherit; color:var(--ink); } .editor .controls { margin-top:8px; } .editor button { padding:7px 9px; font-size:12px; }
+    footer { position:absolute; bottom:13px; right:20px; z-index:2; color:#537080; font-size:11px; letter-spacing:.04em; }
+    @media (max-width:760px) { header .status { display:none; } main { display:block; } aside { border-right:0; border-bottom:1px solid #d9e2e8; } #map { min-height:540px; } .toolbar { top:12px; right:12px; } footer { display:none; } }
+    @media print { @page { size:A4 landscape; margin:10mm; } body { background:#fff; } header,aside,.toolbar,.editor,footer { display:none!important; } main { display:block; min-height:auto; } .board { background:#fff!important; overflow:visible; } #map { min-height:0; height:auto; width:100%; } .connector { stroke:#78909c; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="rose" aria-hidden="true"></span><div><h1>Mapa Mental</h1><p class="tagline">Compass Rose Systems</p></div></div>
+    <span class="status">Navegação online - sem arquivamento</span>
+  </header>
+  <main>
+    <aside>
+      <h2>Estrutura por texto</h2>
+      <p class="help">A primeira linha é o centro do mapa. Use <strong>-</strong> e recuos de dois espaços para criar os níveis.</p>
+      <textarea id="outline" aria-label="Estrutura do mapa mental">Lorem ipsum
+
+- Lorem ipsum dolor sit amet
+  - Consectetur adipiscing elit
+  - Sed do eiusmod tempor
+
+- Ut enim ad minim veniam
+  - Quis nostrud exercitation
+  - Ullamco laboris
+
+- Duis aute irure dolor
+  - Excepteur sint occaecat</textarea>
+      <div class="controls"><button id="generate">Gerar mapa</button><button id="example" class="secondary">Restaurar exemplo</button></div>
+      <p class="note"><strong>Importante:</strong> este mapa não é salvo. Exporte em PDF antes de atualizar ou fechar esta página.</p>
+    </aside>
+    <section class="board" id="board" aria-label="Área do mapa mental">
+      <div class="toolbar"><button id="add">+ Tópico</button><button id="fit" class="secondary">Centralizar</button><button id="fullscreen" class="secondary">Tela cheia</button><button id="pdf" class="primary">Exportar PDF</button></div>
+      <svg id="map" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa mental interativo"><g id="viewport"><g id="lines"></g><g id="nodes"></g></g></svg>
+      <div class="editor" id="editor"><input id="nodeText" maxlength="110" aria-label="Texto do tópico"><div class="controls"><button id="saveText">Salvar</button><button id="addChild" class="secondary">+ Subtópico</button><button id="deleteNode" class="warn">Excluir</button></div></div>
+      <footer>COMPASS ROSE SYSTEMS</footer>
+    </section>
+  </main>
+  <script>
+  (() => {
+    const example = `Lorem ipsum
+
+- Lorem ipsum dolor sit amet
+  - Consectetur adipiscing elit
+  - Sed do eiusmod tempor
+
+- Ut enim ad minim veniam
+  - Quis nostrud exercitation
+  - Ullamco laboris
+
+- Duis aute irure dolor
+  - Excepteur sint occaecat`;
+    const svg = document.querySelector('#map'), viewport = document.querySelector('#viewport'), lines = document.querySelector('#lines'), nodesLayer = document.querySelector('#nodes'), outline = document.querySelector('#outline'), board = document.querySelector('#board');
+    const colors = ['#dff3fb','#e4f0dc','#fff1d8','#f5e5f0','#e9e5fb','#fbe3df'];
+    let roots = [], selected = null, transform = {x:0,y:0,k:1}, drag = null, pan = null, nextId = 1;
+    const S = (el, attrs={}) => { const e=document.createElementNS('http://www.w3.org/2000/svg',el); Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v)); return e; };
+    const esc = s => String(s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+    function parse(text) { const rows=text.split(/\r?\n/).filter(r=>r.trim()); if(!rows.length) return []; nextId=1; const root={id:nextId++,text:rows[0].replace(/^[-*]\s*/, '').trim(),children:[],depth:0}; const stack=[{level:-1,node:root}]; rows.slice(1).forEach(row=>{ const spaces=(row.match(/^\s*/)||[''])[0].length; const level=Math.floor(spaces/2); const text=row.trim().replace(/^[-*]\s*/, '').trim(); if(!text) return; while(stack.length && stack[stack.length-1].level>=level) stack.pop(); const parent=stack[stack.length-1]?.node || root; const node={id:nextId++,text,children:[],depth:parent.depth+1}; parent.children.push(node); stack.push({level,node}); }); return [root]; }
+    function flatten(list, arr=[], parent=null) { list.forEach(n=>{n.parent=parent;arr.push(n);flatten(n.children,arr,n)});return arr; }
+    function layout() { const all=flatten(roots); const root=roots[0]; if(!root) return; const levels=[]; all.forEach(n=>{(levels[n.depth]??=[]).push(n)}); const w=svg.clientWidth||900,h=svg.clientHeight||650; root.x=w*.5; root.y=h*.5; const max=Math.max(...levels.map((l,i)=>i?l.length:0),1); for(let d=1;d<levels.length;d++){ const side=d%2?1:-1; const group=levels[d]; group.forEach((n,i)=>{ const vertical=(i-(group.length-1)/2)*Math.max(78,Math.min(130,(h-100)/Math.max(group.length,1))); n.x=w*.5+side*(170+d*118); n.y=h*.5+vertical; }); }
+      // Move children under their parent when a parent is available.
+      all.filter(n=>n.depth>1).forEach(n=>{ const siblings=n.parent.children, index=siblings.indexOf(n); const offset=(index-(siblings.length-1)/2)*86; n.x=n.parent.x+(n.parent.x>=w*.5?150:-150); n.y=n.parent.y+offset; });
+    }
+    function wrap(text,max=18){const words=text.split(/\s+/), out=[''];words.forEach(word=>{const i=out.length-1; if((out[i]+' '+word).trim().length>max) out.push(word);else out[i]=(out[i]+' '+word).trim()});return out.slice(0,4);}
+    function render() { lines.innerHTML='';nodesLayer.innerHTML=''; const all=flatten(roots); all.filter(n=>n.parent).forEach(n=>{lines.append(S('path',{class:'connector',d:`M ${n.parent.x} ${n.parent.y} C ${(n.parent.x+n.x)/2} ${n.parent.y}, ${(n.parent.x+n.x)/2} ${n.y}, ${n.x} ${n.y}`}));}); all.forEach(n=>{const label=wrap(n.text), width=Math.max(n.depth===0?190:135,...label.map(x=>x.length*8+26)), height=Math.max(48,label.length*19+20); n.width=width;n.height=height; const g=S('g',{class:'node'+(selected===n?' selected':''),'data-id':n.id,'data-depth':n.depth,transform:`translate(${n.x},${n.y})`}); g.append(S('rect',{x:-width/2,y:-height/2,width,height,rx:13,fill:n.depth===0?'#123c59':colors[(n.depth-1)%colors.length],stroke:n.depth===0?'#123c59':'#b3c7d1'})); label.forEach((line,i)=>{const t=S('text',{x:0,y:(i-(label.length-1)/2)*19});t.textContent=line;g.append(t)}); g.addEventListener('pointerdown',startNodeDrag);g.addEventListener('dblclick',()=>openEditor(n));nodesLayer.append(g);}); applyTransform(); }
+    function applyTransform(){viewport.setAttribute('transform',`translate(${transform.x} ${transform.y}) scale(${transform.k})`)}
+    function generate(){roots=parse(outline.value);selected=null;layout();render();fit();}
+    function fit(){if(!roots.length)return; const all=flatten(roots); const minX=Math.min(...all.map(n=>n.x-n.width/2)),maxX=Math.max(...all.map(n=>n.x+n.width/2)),minY=Math.min(...all.map(n=>n.y-n.height/2)),maxY=Math.max(...all.map(n=>n.y+n.height/2)); const w=svg.clientWidth,h=svg.clientHeight;const k=Math.min(.95,w/(maxX-minX+100),h/(maxY-minY+100));transform={k,x:w/2-(minX+maxX)/2*k,y:h/2-(minY+maxY)/2*k};applyTransform();}
+    function point(e){const r=svg.getBoundingClientRect();return{x:(e.clientX-r.left-transform.x)/transform.k,y:(e.clientY-r.top-transform.y)/transform.k};}
+    function startNodeDrag(e){e.stopPropagation();const n=flatten(roots).find(x=>x.id===Number(e.currentTarget.dataset.id));selected=n;const p=point(e);drag={n,dx:p.x-n.x,dy:p.y-n.y};svg.setPointerCapture(e.pointerId);render();}
+    svg.addEventListener('pointerdown',e=>{if(e.target===svg||e.target===viewport||e.target.parentNode===lines){selected=null;document.querySelector('#editor').style.display='none';pan={x:e.clientX,y:e.clientY,tx:transform.x,ty:transform.y};svg.setPointerCapture(e.pointerId);render();}});
+    svg.addEventListener('pointermove',e=>{if(drag){const p=point(e);drag.n.x=p.x-drag.dx;drag.n.y=p.y-drag.dy;render();}else if(pan){transform.x=pan.tx+e.clientX-pan.x;transform.y=pan.ty+e.clientY-pan.y;applyTransform();}}); svg.addEventListener('pointerup',()=>{drag=null;pan=null});
+    svg.addEventListener('wheel',e=>{e.preventDefault();const r=svg.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top,old=transform.k;transform.k=Math.max(.25,Math.min(2.3,old*(e.deltaY<0?1.1:.9)));transform.x=mx-(mx-transform.x)*(transform.k/old);transform.y=my-(my-transform.y)*(transform.k/old);applyTransform();},{passive:false});
+    const editor=document.querySelector('#editor'), input=document.querySelector('#nodeText'); function openEditor(n){selected=n;input.value=n.text;editor.style.display='block';const r=svg.getBoundingClientRect();editor.style.left=Math.min(board.clientWidth-230,Math.max(12,r.width/2+20))+'px';editor.style.top='70px';input.focus();render();}
+    document.querySelector('#saveText').onclick=()=>{if(selected&&input.value.trim()){selected.text=input.value.trim();render();}editor.style.display='none';};document.querySelector('#addChild').onclick=()=>{if(!selected)return;const child={id:nextId++,text:'Novo subtópico',children:[],depth:selected.depth+1,parent:selected,x:selected.x+160,y:selected.y+78};selected.children.push(child);openEditor(child);render();};document.querySelector('#deleteNode').onclick=()=>{if(!selected||selected.depth===0)return;const a=selected.parent.children;a.splice(a.indexOf(selected),1);selected=null;editor.style.display='none';render();};
+    document.querySelector('#generate').onclick=generate;document.querySelector('#example').onclick=()=>{outline.value=example;generate()};document.querySelector('#add').onclick=()=>{if(!roots.length)return;selected=roots[0];document.querySelector('#addChild').click()};document.querySelector('#fit').onclick=fit;document.querySelector('#fullscreen').onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();else board.requestFullscreen();};
+    document.querySelector('#pdf').onclick=()=>{const title=(roots[0]?.text||'Mapa Mental').replace(/[\\/:*?"<>|]/g,'-');document.title=`${title} - Compass Rose Systems`;window.print();setTimeout(()=>document.title='Mapa Mental | Compass Rose Systems',500);}; window.addEventListener('resize',()=>{layout();render();fit()}); generate();
+  })();
+  </script>
+</body>
+</html>
