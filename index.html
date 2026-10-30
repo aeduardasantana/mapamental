@@ -115,6 +115,27 @@ function showit(){
 }
 function build(){roots=parse($('#outline').value);selected=null;layout();render();fit()}function fold(open){let l=$('#level').value;flat(roots).forEach(n=>{if(n.children.length&&(l==='all'||n.depth==l))n.closed=!open});layout();render();fit()}
 $('#build').onclick=()=>{if(confirm('Regenerar substituirá os detalhes, imagens e vídeos dos tópicos. Continuar?')){build();scheduleSave()}};$('#example').onclick=()=>{if(confirm('Restaurar o exemplo substituirá o mapa atual. Continuar?')){$('#outline').value=sample;build();scheduleSave()}};$('#add').onclick=()=>{let p=selected||roots[0];if(!p)return;let n={id:id++,text:'Novo subtópico',children:[],depth:p.depth+1,detail:'',video:'',image:''};p.children.push(n);selected=n;layout();render();edit(n);scheduleSave()};$('#edit').onclick=()=>edit(selected);$('#view').onclick=()=>content(selected);$('#save').onclick=()=>{if(!selected)return;selected.text=$('#title').value.trim()||selected.text;selected.detail=$('#text').value.trim();selected.video=$('#video').value.trim();selected.image=$('#image').value.trim();$('#editBox').classList.remove('on');layout();render();scheduleSave()};$('#cancel').onclick=()=>$('#editBox').classList.remove('on');$('#close').onclick=()=>$('#contentBox').classList.remove('on');[$('#editBox'),$('#contentBox')].forEach(x=>x.onclick=e=>{if(e.target===x)x.classList.remove('on')});$('#expand').onclick=()=>fold(true);$('#collapse').onclick=()=>fold(false);$('#fit').onclick=fit;$('#present').onclick=present;$('#showRoute').onclick=()=>{$('#routeBox').classList.toggle('on');queuePresentationFit()};$('#prev').onclick=goBackSlide;$('#next').onclick=()=>goToSlide(show.index+1);$('#exit').onclick=()=>{$('#presentation').classList.remove('on');document.body.classList.remove('presenting');if(document.fullscreenElement)document.exitFullscreen();fit()};
+function deleteSelectedTopic(){
+  if(!selected)return;
+  if(selected.depth===0){alert('O título central não pode ser excluído por Del. Use Excluir na biblioteca para apagar o mapa inteiro.');return}
+  const n=selected,parent=n.parent;
+  if(!parent)return;
+  if(!confirm('Excluir "'+n.text+'"'+(n.children.length?' e todos os seus subtópicos':'')+'?'))return;
+  const index=parent.children.indexOf(n);
+  if(index<0)return;
+  parent.children.splice(index,1);
+  selected=parent;
+  $('#outline').value=outline(roots);
+  layout();render();fit();scheduleSave();
+}
+document.addEventListener('keydown',e=>{
+  if(!['Delete','Del'].includes(e.key)||e.altKey||e.ctrlKey||e.metaKey||e.isComposing)return;
+  if(e.target.closest('input,textarea,select,[contenteditable="true"]'))return;
+  if($('#presentation').classList.contains('on')||$('#editBox').classList.contains('on')||$('#contentBox').classList.contains('on'))return;
+  if(!selected)return;
+  e.preventDefault();
+  deleteSelectedTopic();
+});
 document.addEventListener('keydown',e=>{
   if(!$('#presentation').classList.contains('on')||e.altKey||e.ctrlKey||e.metaKey||e.isComposing)return;
   if(e.target.closest('input,textarea,select,[contenteditable="true"]'))return;
