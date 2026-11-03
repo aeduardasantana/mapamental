@@ -75,7 +75,7 @@ function fitPresentationTitle(){
 }
 function hasHiddenAncestor(n){for(let p=n.parent;p;p=p.parent)if(p.presentationHidden)return true;return false}
 function present(){
-  show={list:flat(roots,[],null,true).filter(n=>!n.presentationHidden&&!hasHiddenAncestor(n)),index:0,history:[]};
+  show={list:flat(roots,[],null,true).filter(n=>(!guideMode||n.depth>0)&&!n.presentationHidden&&!hasHiddenAncestor(n)),index:0,history:[]};
   if(!show.list.length)return;
   $('#presentation').classList.add('on');
   document.body.classList.add('presenting');
@@ -116,7 +116,7 @@ function showit(){
   queuePresentationFit();
 }
 function build(){roots=parse($('#outline').value);selected=null;layout();render();fit()}function fold(open){let l=$('#level').value;flat(roots).forEach(n=>{if(n.children.length&&(l==='all'||n.depth==l))n.closed=!open});layout();render();fit()}
-$('#build').onclick=()=>{if(confirm('Regenerar substituirá os detalhes, imagens e vídeos dos tópicos. Continuar?')){build();scheduleSave()}};$('#example').onclick=()=>{if(confirm('Restaurar o exemplo substituirá o mapa atual. Continuar?')){$('#outline').value=sample;build();scheduleSave()}};$('#add').onclick=()=>{let p=selected||roots[0];if(!p)return;let n={id:id++,text:'Novo subtópico',children:[],depth:p.depth+1,detail:'',video:'',image:''};p.children.push(n);selected=n;layout();render();edit(n);scheduleSave()};$('#edit').onclick=()=>edit(selected);$('#view').onclick=()=>content(selected);$('#visibility').onclick=()=>{if(!selected)return;selected.presentationHidden=!selected.presentationHidden;render();scheduleSave()};$('#save').onclick=()=>{if(!selected)return;selected.text=$('#title').value.trim()||selected.text;selected.detail=$('#text').value.trim();selected.video=$('#video').value.trim();selected.image=$('#image').value.trim();$('#editBox').classList.remove('on');layout();render();scheduleSave()};$('#cancel').onclick=()=>$('#editBox').classList.remove('on');$('#close').onclick=()=>$('#contentBox').classList.remove('on');[$('#editBox'),$('#contentBox')].forEach(x=>x.onclick=e=>{if(e.target===x)x.classList.remove('on')});$('#expand').onclick=()=>fold(true);$('#collapse').onclick=()=>fold(false);$('#fit').onclick=fit;$('#present').onclick=present;$('#showRoute').onclick=()=>{$('#routeBox').classList.toggle('on');queuePresentationFit()};$('#prev').onclick=goBackSlide;$('#next').onclick=()=>goToSlide(show.index+1);$('#exit').onclick=()=>{$('#presentation').classList.remove('on');document.body.classList.remove('presenting');if(document.fullscreenElement)document.exitFullscreen();fit()};
+$('#build').onclick=()=>{if(confirm('Regenerar substituirá os detalhes, imagens e vídeos dos tópicos. Continuar?')){build();scheduleSave()}};$('#example').onclick=()=>{if(confirm('Restaurar o exemplo substituirá o mapa atual. Continuar?')){guideMode=false;$('#outline').value=sample;build();scheduleSave()}};$('#add').onclick=()=>{let p=selected||roots[0];if(!p)return;let n={id:id++,text:'Novo subtópico',children:[],depth:p.depth+1,detail:'',video:'',image:''};p.children.push(n);selected=n;layout();render();edit(n);scheduleSave()};$('#edit').onclick=()=>edit(selected);$('#view').onclick=()=>content(selected);$('#visibility').onclick=()=>{if(!selected)return;selected.presentationHidden=!selected.presentationHidden;render();scheduleSave()};$('#save').onclick=()=>{if(!selected)return;selected.text=$('#title').value.trim()||selected.text;selected.detail=$('#text').value.trim();selected.video=$('#video').value.trim();selected.image=$('#image').value.trim();$('#editBox').classList.remove('on');layout();render();scheduleSave()};$('#cancel').onclick=()=>$('#editBox').classList.remove('on');$('#close').onclick=()=>$('#contentBox').classList.remove('on');[$('#editBox'),$('#contentBox')].forEach(x=>x.onclick=e=>{if(e.target===x)x.classList.remove('on')});$('#expand').onclick=()=>fold(true);$('#collapse').onclick=()=>fold(false);$('#fit').onclick=fit;$('#present').onclick=present;$('#showRoute').onclick=()=>{$('#routeBox').classList.toggle('on');queuePresentationFit()};$('#prev').onclick=goBackSlide;$('#next').onclick=()=>goToSlide(show.index+1);$('#exit').onclick=()=>{$('#presentation').classList.remove('on');document.body.classList.remove('presenting');if(document.fullscreenElement)document.exitFullscreen();fit()};
 function deleteSelectedTopic(){
   if(!selected)return;
   if(selected.depth===0){alert('O título central não pode ser excluído por Del. Use Excluir na biblioteca para apagar o mapa inteiro.');return}
@@ -151,17 +151,17 @@ document.addEventListener('keydown',e=>{
 document.addEventListener('fullscreenchange',queuePresentationFit);
 $('#pdf').onclick=()=>window.print();window.addEventListener('resize',()=>{layout();render();fit();queuePresentationFit()});
 
-const STORE='crs_mindmaps_v1';let activeId=null,logo='',timer;
+const STORE='crs_mindmaps_v1';let activeId=null,logo='',timer,guideMode=false;
 function library(){try{let x=JSON.parse(localStorage.getItem(STORE)||'[]');return Array.isArray(x)?x:[]}catch{return[]}}
 function nodeData(n){return{ id:n.id,text:n.text,detail:n.detail||'',image:n.image||'',video:n.video||'',closed:!!n.closed,presentationHidden:!!n.presentationHidden,children:n.children.map(nodeData)}}
 function inflate(n,d=0){return{id:Number(n.id)||id++,text:String(n.text||'Tópico'),detail:n.detail||'',image:n.image||'',video:n.video||'',closed:!!n.closed,presentationHidden:!!n.presentationHidden,depth:d,children:Array.isArray(n.children)?n.children.map(c=>inflate(c,d+1)):[]}}
 function outline(nodes){const a=[];function visit(n,d){a.push((d?'  '.repeat(d-1)+'- ':'')+n.text);n.children.forEach(c=>visit(c,d+1))}nodes.forEach(n=>visit(n,0));return a.join('\n')}
-function snapshot(){return{format:'CRS-MAP-1',name:$('#mapname').value.trim()||'Mapa sem título',logo,place:$('#brandplace').value,tree:roots.map(nodeData),outline:outline(roots)}}
+function snapshot(){return{format:'CRS-MAP-1',name:$('#mapname').value.trim()||'Mapa sem título',logo,place:$('#brandplace').value,guideMode,tree:roots.map(nodeData),outline:outline(roots)}}
 function brand(){const title=$('#mapname').value.trim()||'Mapa sem título';for(const e of [$('#mapmark'),$('#slidebrand')]){e.replaceChildren();if(logo){const im=document.createElement('img');im.src=logo;im.alt='Logo do mapa';e.append(im)}else e.textContent=title}$('#board').classList.toggle('brand-top',$('#brandplace').value==='header');document.title=title+' | Compass Rose Systems'}
 function menu(){const sel=$('#library');sel.replaceChildren();let o=document.createElement('option');o.value='';o.textContent='Selecione um mapa';sel.add(o);library().sort((a,b)=>b.updated-a.updated).forEach(p=>{let x=document.createElement('option');x.value=p.id;x.textContent=p.name;sel.add(x)});sel.value=activeId||''}
 function save(){try{const p=snapshot();p.id=activeId||('m-'+Date.now()+'-'+Math.random().toString(36).slice(2,7));activeId=p.id;p.updated=Date.now();let all=library(),i=all.findIndex(x=>x.id===p.id);if(i<0)all.push(p);else all[i]=p;localStorage.setItem(STORE,JSON.stringify(all));menu();$('#saving').textContent='Salvo localmente às '+new Date().toLocaleTimeString('pt-BR')+'. Para backup, exporte JSON ou HTML.'}catch(e){$('#saving').textContent='Falha ao salvar localmente. Exporte e guarde um backup.'}}
 function scheduleSave(){clearTimeout(timer);timer=setTimeout(save,450)}
-function openMap(p){activeId=p.id||null;$('#mapname').value=p.name||'';logo=p.logo||'';$('#brandplace').value=p.place==='header'?'header':'footer';if(Array.isArray(p.tree)){id=1;roots=p.tree.map(n=>inflate(n));id=Math.max(0,...flat(roots).map(n=>n.id))+1;$('#outline').value=outline(roots)}else{$('#outline').value=p.outline||p.name||'Mapa';roots=parse($('#outline').value)}selected=null;layout();render();fit();brand();menu()}
+function openMap(p){guideMode=!!p.guideMode;activeId=p.id||null;$('#mapname').value=p.name||'';logo=p.logo||'';$('#brandplace').value=p.place==='header'?'header':'footer';if(Array.isArray(p.tree)){id=1;roots=p.tree.map(n=>inflate(n));id=Math.max(0,...flat(roots).map(n=>n.id))+1;$('#outline').value=outline(roots)}else{$('#outline').value=p.outline||p.name||'Mapa';roots=parse($('#outline').value)}selected=null;layout();render();fit();brand();menu()}
 function dl(ext,text,mime){const blob=new Blob([text],{type:mime}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=($('#mapname').value.trim()||'mapa-mental').replace(/[^a-zA-Z0-9À-ÿ_-]+/g,'-')+'.'+ext;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500)}
 const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function htmlExport(){const d=snapshot();function tree(ns){return '<ul>'+ns.map(n=>'<li><strong>'+esc(n.text)+'</strong>'+(n.detail?'<p>'+esc(n.detail)+'</p>':'')+(n.video?'<p>Vídeo: <a href="'+esc(n.video)+'">'+esc(n.video)+'</a></p>':'')+(n.image?'<p><img style="max-width:380px" src="'+esc(n.image)+'" alt="'+esc(n.text)+'"></p>':'')+tree(n.children)+'</li>').join('')+'</ul>'}const pack=JSON.stringify(d).replace(/</g,'\\u003c');dl('html','<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(d.name)+'</title><style>body{font:16px/1.6 system-ui;max-width:900px;margin:auto;padding:28px;color:#143747;background:#f4f8fa}li{margin:12px 0}footer{border-top:1px solid #ccc;margin-top:32px;padding:20px 0}</style><h1>'+(d.logo?'<img src="'+esc(d.logo)+'" alt="Logo" style="max-height:70px">':esc(d.name))+'</h1>'+tree(d.tree)+'<footer>© 2026 Compass Rose Systems · Ideias ganham direção quando encontram estrutura.</footer><script type="application/json" id="crs-map-data">'+pack+'</'+'script></html>','text/html;charset=utf-8')}
@@ -171,13 +171,35 @@ $('#brandplace').onchange=()=>{brand();scheduleSave()};
 $('#maplogo').onchange=e=>{const file=e.target.files[0];if(!file)return;if(file.size>500000){alert('A logo deve ter até 500 KB.');e.target.value='';return}const reader=new FileReader();reader.onload=()=>{logo=reader.result;brand();scheduleSave()};reader.readAsDataURL(file)};
 $('#clearlogo').onclick=()=>{logo='';$('#maplogo').value='';brand();scheduleSave()};
 $('#library').onchange=e=>{const p=library().find(x=>x.id===e.target.value);if(p)openMap(p)};
-$('#newmap').onclick=()=>{if(!confirm('Salvar o mapa atual e criar outro?'))return;save();activeId=null;logo='';$('#mapname').value='Novo mapa';$('#outline').value='Novo mapa\n\n- Primeiro tópico';build();brand();save()};
+$('#newmap').onclick=()=>{if(!confirm('Salvar o mapa atual e criar outro?'))return;save();activeId=null;guideMode=false;logo='';$('#mapname').value='Novo mapa';$('#outline').value='Novo mapa\n\n- Primeiro tópico';build();brand();save()};
 $('#delmap').onclick=()=>{if(!activeId||!confirm('Excluir permanentemente este mapa da biblioteca local?'))return;localStorage.setItem(STORE,JSON.stringify(library().filter(x=>x.id!==activeId)));activeId=null;menu();$('#saving').textContent='Mapa excluído da biblioteca. O conteúdo atual permanece visível.'};
 $('#txt').onclick=()=>dl('txt',outline(roots),'text/plain;charset=utf-8');
 $('#json').onclick=()=>dl('json',JSON.stringify(snapshot(),null,2),'application/json;charset=utf-8');
 $('#html').onclick=htmlExport;
 $('#importfile').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const contents=await file.text();let d;if(/\.json$/i.test(file.name))d=JSON.parse(contents);else if(/\.html?$/i.test(file.name)){const doc=new DOMParser().parseFromString(contents,'text/html');const data=doc.getElementById('crs-map-data');if(!data)throw Error('HTML sem dados de edição');d=JSON.parse(data.textContent)}else d={name:file.name.replace(/\.txt$/i,''),outline:contents};if(d.tree&&!Array.isArray(d.tree))throw Error('Arquivo inválido');d.id=null;openMap(d);save();e.target.value=''}catch(err){alert('Não foi possível importar: '+err.message);e.target.value=''}};
 
-const existing=library().sort((a,b)=>b.updated-a.updated);if(existing.length)openMap(existing[0]);else{$('#mapname').value='Meu primeiro mapa';build();brand();save()}
+async function loadSharedGuide(){
+  const params=new URLSearchParams(location.search),key=params.get('map');
+  const sharedGuides={'jsl-2026-11-04':'maps/jsl-2026-11-04.json'};
+  if(!Object.prototype.hasOwnProperty.call(sharedGuides,key))return false;
+  try{
+    const response=await fetch(sharedGuides[key],{cache:'no-store'});
+    if(!response.ok)throw Error('Não foi possível carregar o arquivo do guia');
+    const guide=await response.json();
+    if(guide.format!=='CRS-MAP-1'||!Array.isArray(guide.tree)||!guide.tree.length)throw Error('Estrutura do mapa inválida');
+    openMap({...guide,id:null,guideMode:true});
+    $('#saving').textContent='Guia carregado por link. O conteúdo pode ser aberto novamente neste endereço. Para guardar alterações neste aparelho, use Salvar agora.';
+    if(params.get('apresentar')==='1')present();
+    return true;
+  }catch(error){
+    $('#saving').textContent='Não foi possível abrir o guia compartilhado: '+error.message;
+    return false;
+  }
+}
+(async()=>{
+  if(await loadSharedGuide())return;
+  const existing=library().sort((a,b)=>b.updated-a.updated);
+  if(existing.length)openMap(existing[0]);else{$('#mapname').value='Meu primeiro mapa';build();brand();save()}
+})();
 })();
 </script></body></html>
