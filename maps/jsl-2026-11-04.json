@@ -1,0 +1,282 @@
+{
+  "format": "CRS-MAP-1",
+  "name": "JSL • O invisível também importa • 04.11.2026",
+  "place": "footer",
+  "logo": "",
+  "guideMode": true,
+  "tree": [
+    {
+      "id": 1,
+      "text": "O INVISÍVEL TAMBÉM IMPORTA\nJSL • 04.11.2026",
+      "detail": "Guia móvel por slide. Use Próximo e Anterior durante a apresentação; acesse a rota para pular a qualquer slide. Cada etapa traz uma frase central e um lembrete breve. Texto completo das falas está no Drive.",
+      "children": [
+        {
+          "id": 2,
+          "text": "01 · Abertura",
+          "detail": "TEMPO: 00–03 min\n\nFALA-CHAVE\nOlá, pessoal! Hoje a proposta é uma experiência, não uma prova. Não é necessário responder em voz alta.\n\nLEMBRETE\nApresente sua trajetória brevemente: processos, equipes e diferentes responsabilidades. Distinga o trabalho previsto no procedimento daquele que acontece de verdade no turno. Convide a observar as imagens e acompanhar as revelações.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 3,
+          "text": "02 · Observe os círculos",
+          "detail": "TEMPO: 03–05 min\n\nFALA-CHAVE\nQual círculo central parece maior?\n\nLEMBRETE\nFaça a pergunta sem votação. Deixe a plateia observar em silêncio por alguns segundos. Não antecipe a resposta.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 4,
+          "text": "03 · Revelação da ilusão",
+          "detail": "TEMPO: 05–06 min\n\nFALA-CHAVE\nOs círculos centrais têm o mesmo tamanho. O que está ao redor altera nossa percepção.\n\nLEMBRETE\nEsclareça que isso é uma ilusão visual, não um teste psicológico nem uma explicação científica da saúde mental. É uma metáfora para começar a investigar o contexto.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 5,
+          "text": "04 · Antes de concluir",
+          "detail": "TEMPO: 06–07 min\n\nFALA-CHAVE\nAntes de concluir, conheça o contexto.\n\nLEMBRETE\nUma primeira impressão não contém todas as informações. A investigação não elimina responsabilidades, mas ajuda a formular perguntas melhores: o que exatamente está acontecendo?",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 6,
+          "text": "05 · Psicossocial ≠ diagnóstico",
+          "detail": "TEMPO: 07–09 min\n\nFALA-CHAVE\nRisco psicossocial não é sinônimo de diagnóstico psicológico.\n\nLEMBRETE\nNa prevenção ocupacional, analisam-se condições e organização do trabalho: exigências, recursos, comunicação, responsabilidades, apoio e relações. Não diagnosticar pessoas da plateia.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 7,
+          "text": "06 · Perigo",
+          "detail": "TEMPO: 09–10 min\n\nFALA-CHAVE\nPerigo é uma condição ou situação com potencial de causar dano.\n\nLEMBRETE\nExemplos hipotéticos: prioridades incompatíveis, falta de apoio ou orientações contraditórias. Identificar perigo não é atribuir nota a um setor.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 8,
+          "text": "07 · Exposição",
+          "detail": "TEMPO: 10–11 min\n\nFALA-CHAVE\nExposição é compreender quem executa a tarefa, em quais condições, por quanto tempo e com quais controles.\n\nLEMBRETE\nConsidere a frequência, os recursos e o trabalho efetivo. Não confunda existência de uma situação com exposição caracterizada.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 9,
+          "text": "08 · Risco avaliado",
+          "detail": "TEMPO: 10–11 min\n\nFALA-CHAVE\nRisco avaliado exige critérios técnicos para analisar a probabilidade e a severidade dos possíveis agravos.\n\nLEMBRETE\nUm questionário sozinho não transforma respostas em classificação automática de risco ocupacional. Não inventar matriz ou pontuação.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 10,
+          "text": "09 · Trabalho real",
+          "detail": "TEMPO: 11–13 min\n\nFALA-CHAVE\nNão avaliamos personalidade. Investigamos o trabalho real.\n\nLEMBRETE\nTrabalho previsto é diferente de trabalho executado diante de mudanças, interrupções e prioridades. Saúde mental clínica e gestão de riscos são atividades relacionadas, mas diferentes. Introduza a história fictícia.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 11,
+          "text": "10 · Uma entrega atrasou",
+          "detail": "TEMPO: 13–15 min\n\nFALA-CHAVE\nUma entrega não foi concluída no prazo. O que você pensaria primeiro?\n\nLEMBRETE\nSó há uma informação. Podem surgir hipóteses: atenção, planejamento, prazo, recursos. Nenhuma é causa comprovada. É uma empresa fictícia — não é ocorrência nem resultado da JSL.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 12,
+          "text": "11 · Duas prioridades",
+          "detail": "TEMPO: 15–16 min\n\nFALA-CHAVE\nDuas demandas receberam prioridade máxima ao mesmo tempo.\n\nLEMBRETE\nA pessoa não sabia qual vinha primeiro. É uma informação nova, ainda não é uma avaliação de risco. A questão deixa de ser apenas quem atrasou.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 13,
+          "text": "12 · Perguntas que mudam",
+          "detail": "TEMPO: 16–17 min\n\nFALA-CHAVE\nQuem definiu a prioridade? Havia critério, tempo e recursos suficientes?\n\nLEMBRETE\nEste é um momento de pergunta, não um quarto fato da história: o tópico 02 continua sendo a informação do slide anterior.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 14,
+          "text": "13 · Informação não chegou",
+          "detail": "TEMPO: 17–19 min\n\nFALA-CHAVE\nUma mudança na orientação não chegou a todas as pessoas envolvidas.\n\nLEMBRETE\nAlguns trabalharam com uma instrução; outros, com outra. O atraso permanece, mas o contexto exige outras perguntas. Não tirar conclusões precipitadas.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 15,
+          "text": "14 · A virada",
+          "detail": "TEMPO: 19–21 min\n\nFALA-CHAVE\nO resultado não mudou. As perguntas mudaram.\n\nLEMBRETE\nInvestigar não é adivinhar. Não se pode transformar três frases em diagnóstico da empresa, julgamento pessoal ou classificação de risco.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 16,
+          "text": "15 · Fato, relato e hipótese",
+          "detail": "TEMPO: 19–21 min\n\nFALA-CHAVE\nFato: houve atraso. Relato: orientações recebidas. Hipótese: prioridades conflitantes. Evidência: o que precisa ser confirmado.\n\nLEMBRETE\nA investigação pode examinar registros, procedimentos, observação da tarefa e escuta protegida. O público compreende o raciocínio sem realizar diagnóstico ou coleta de dados no evento.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 17,
+          "text": "16 · Do fato ao risco",
+          "detail": "TEMPO: 21–23 min\n\nFALA-CHAVE\nSituação observada → condição perigosa a investigar → exposição → avaliação competente.\n\nLEMBRETE\nSe orientações contraditórias forem recorrentes, que condição produz a exposição? Precisamos de método, informações suficientes e atribuições técnicas. Não dar nota por palpite.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 18,
+          "text": "17 · Números não bastam",
+          "detail": "TEMPO: 23–26 min\n\nFALA-CHAVE\nUma resposta isolada ou um sintoma não classifica automaticamente risco ocupacional.\n\nLEMBRETE\nPerguntar: qual apoio está faltando? Em qual atividade? Com que frequência? Que controles existem? Instrumentos podem orientar a investigação, mas não substituem o conhecimento do trabalho real. Proteger privacidade.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 19,
+          "text": "18 · Possível fonte no processo",
+          "detail": "TEMPO: 26–28 min\n\nFALA-CHAVE\nE se a dificuldade estiver no processo e não somente no desempenho individual?\n\nLEMBRETE\nRetome as situações fictícias: ordens conflitantes e aviso incompleto. O caminho para prevenção começa investigando o que gera a exposição.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 20,
+          "text": "19 · Medidas possíveis",
+          "detail": "TEMPO: 28–29 min\n\nFALA-CHAVE\nPrioridade definida. Fluxo comunicado. Suporte disponível.\n\nLEMBRETE\nSão exemplos de medidas depois de investigar. Dependendo das causas, pode ser necessário rever distribuição de tarefas, responsável por mudanças e comunicação entre turnos. Não dizer que a JSL precisa dessas medidas.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 21,
+          "text": "20 · Implementar e verificar",
+          "detail": "TEMPO: 29–31 min\n\nFALA-CHAVE\nDecidir → implementar → verificar.\n\nLEMBRETE\nAnunciar uma mudança não é realizá-la; realizar não garante eficácia. Acompanhar se o procedimento funciona no trabalho real e não transfere problemas para outra equipe. Autocuidado não substitui prevenção na fonte.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 22,
+          "text": "21 · Papéis complementares",
+          "detail": "TEMPO: 31–35 min\n\nFALA-CHAVE\nTrabalhadores informam; lideranças orientam e encaminham; RH/SST/CIPA apoiam conforme suas atribuições; organização gerencia os riscos.\n\nLEMBRETE\nNão colocar trabalhadores e gestores em lados opostos. A gestão de riscos e a provisão de recursos são responsabilidades institucionais. Informação precisa chegar a quem pode tomar decisões.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 23,
+          "text": "22 · O ciclo continua",
+          "detail": "TEMPO: 35–37 min\n\nFALA-CHAVE\nConhecer → avaliar → planejar → implementar → reavaliar.\n\nLEMBRETE\nUm levantamento pode ajudar a reunir informações, mas não encerra a prevenção. Um formulário preenchido e um plano escrito não comprovam controles eficazes. Não mencionar resultados do DRPS ainda não disponibilizados.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 24,
+          "text": "23 · Três verbos",
+          "detail": "TEMPO: 37–38 min\n\nFALA-CHAVE\nReconhecer. Comunicar. Prevenir.\n\nLEMBRETE\nReconhecer situações concretas sem diagnosticar pessoas; comunicar fatos pelos canais adequados; prevenir por meio de avaliação, medidas organizacionais e acompanhamento.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 25,
+          "text": "24 · Volte ao primeiro dado",
+          "detail": "TEMPO: 38–39 min\n\nFALA-CHAVE\nVocês lembram? Uma entrega atrasou.\n\nLEMBRETE\nNo começo tínhamos apenas um resultado. Depois surgiram perguntas sobre prioridades, comunicação, condições e trabalho real.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 26,
+          "text": "25 · Um resultado não conta tudo",
+          "detail": "TEMPO: 39 min\n\nFALA-CHAVE\nNem toda situação pode ser compreendida pela primeira impressão.\n\nLEMBRETE\nCuidar das pessoas no trabalho também exige cuidar das condições em que o trabalho acontece. Não transformar toda dificuldade em doença, nem ignorar perigos.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        },
+        {
+          "id": 27,
+          "text": "26 · Encerramento",
+          "detail": "TEMPO: 39–40 min\n\nFALA-CHAVE\nPorque o invisível também importa. Muito obrigada — e desejo um bom turno de trabalho a todos!\n\nLEMBRETE\nConclua com serenidade. A música deve começar somente após a última fala e o término da interpretação em Libras, se houver.",
+          "children": [],
+          "closed": false,
+          "presentationHidden": false,
+          "image": "",
+          "video": ""
+        }
+      ],
+      "closed": true,
+      "presentationHidden": false,
+      "image": "",
+      "video": ""
+    }
+  ],
+  "outline": "O INVISÍVEL TAMBÉM IMPORTA — JSL • 04.11.2026\n  - 01 · Abertura\n  - 02 · Observe os círculos\n  - 03 · Revelação da ilusão\n  - 04 · Antes de concluir\n  - 05 · Psicossocial ≠ diagnóstico\n  - 06 · Perigo\n  - 07 · Exposição\n  - 08 · Risco avaliado\n  - 09 · Trabalho real\n  - 10 · Uma entrega atrasou\n  - 11 · Duas prioridades\n  - 12 · Perguntas que mudam\n  - 13 · Informação não chegou\n  - 14 · A virada\n  - 15 · Fato, relato e hipótese\n  - 16 · Do fato ao risco\n  - 17 · Números não bastam\n  - 18 · Possível fonte no processo\n  - 19 · Medidas possíveis\n  - 20 · Implementar e verificar\n  - 21 · Papéis complementares\n  - 22 · O ciclo continua\n  - 23 · Três verbos\n  - 24 · Volte ao primeiro dado\n  - 25 · Um resultado não conta tudo\n  - 26 · Encerramento",
+  "description": "Guia público de apresentação para Eduarda Bispo. Situações fictícias, sem resultados DRPS."
+}
