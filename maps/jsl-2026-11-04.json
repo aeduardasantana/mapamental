@@ -223,7 +223,7 @@
         {
           "id": 23,
           "text": "22 · O ciclo continua",
-          "detail": "TEMPO: 35–37 min\n\nFALA-CHAVE\nConhecer → avaliar → planejar → implementar → reavaliar.\n\nLEMBRETE\nUm levantamento pode ajudar a reunir informações, mas não encerra a prevenção. Um formulário preenchido e um plano escrito não comprovam controles eficazes. Não mencionar resultados do DRPS ainda não disponibilizados.",
+          "detail": "TEMPO: 35–37 min\n\nFALA-CHAVE\nConhecer → avaliar → planejar → implementar → reavaliar.\n\nLEMBRETE\nUm levantamento pode ajudar a reunir informações, mas não encerra a prevenção. Um formulário preenchido e um plano escrito não comprovam controles eficazes. Não citar resultados, notas ou classificações internas não autorizadas.",
           "children": [],
           "closed": false,
           "presentationHidden": false,
@@ -278,5 +278,5 @@
     }
   ],
   "outline": "O INVISÍVEL TAMBÉM IMPORTA — JSL • 04.11.2026\n  - 01 · Abertura\n  - 02 · Observe os círculos\n  - 03 · Revelação da ilusão\n  - 04 · Antes de concluir\n  - 05 · Psicossocial ≠ diagnóstico\n  - 06 · Perigo\n  - 07 · Exposição\n  - 08 · Risco avaliado\n  - 09 · Trabalho real\n  - 10 · Uma entrega atrasou\n  - 11 · Duas prioridades\n  - 12 · Perguntas que mudam\n  - 13 · Informação não chegou\n  - 14 · A virada\n  - 15 · Fato, relato e hipótese\n  - 16 · Do fato ao risco\n  - 17 · Números não bastam\n  - 18 · Possível fonte no processo\n  - 19 · Medidas possíveis\n  - 20 · Implementar e verificar\n  - 21 · Papéis complementares\n  - 22 · O ciclo continua\n  - 23 · Três verbos\n  - 24 · Volte ao primeiro dado\n  - 25 · Um resultado não conta tudo\n  - 26 · Encerramento",
-  "description": "Guia público de apresentação para Eduarda Bispo. Situações fictícias, sem resultados DRPS."
+  "description": "Guia público de apresentação para Eduarda Bispo. Situações fictícias, sem dados de avaliações internas."
 }
